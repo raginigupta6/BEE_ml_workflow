@@ -2,6 +2,8 @@ import os
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
 from Train import train_model
+import tensorflow as tf
+import pandas as pd
 from sklearn.externals import joblib
 
 app = Flask(__name__)
@@ -12,7 +14,10 @@ if not os.path.isfile('iris-model.model'):
 
 model = joblib.load('iris-model.model')
 
+classifier = None
 
+#def initialize_classifier():
+    
 class MakePrediction(Resource):
     @staticmethod
     def post():
